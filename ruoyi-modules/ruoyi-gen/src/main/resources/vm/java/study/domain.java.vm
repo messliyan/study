@@ -1,0 +1,51 @@
+package ${packageName}.domain;
+
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.ruoyi.common.core.annotation.Excel;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.time.LocalDateTime;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+import javax.validation.constraints.NotNull;
+/**
+ * ${functionName}对象 ${tableName}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@ApiModel(value = "${functionName}表")
+//有了下面这个注解 TypeHandler才生效
+@TableName(autoResultMap = true)
+public class ${ClassName}
+{
+#foreach ($column in $columns)
+#if(!$table.isSuperColumn($column.javaField))
+#if($column.list)
+#set($parentheseIndex=$column.columnComment.indexOf("（"))
+#set($comment=$column.columnComment)
+@ApiModelProperty(value = "${comment}")
+#if($parentheseIndex != -1)
+@Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+#elseif($column.javaType == 'Date')
+@JsonFormat(pattern = "yyyy-MM-dd")
+@Excel(name = "${comment}", width = 30, dateFormat = "yyyy-MM-dd")
+#elseif($column.javaType == 'String')
+@NotNull(message = "请选择${comment}")
+@Excel(name = "${comment}")
+#else
+@Excel(name = "${comment}")
+#end
+#end
+private $column.javaType $column.javaField;
+
+#end
+#end
+
+}

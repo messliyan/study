@@ -124,10 +124,8 @@ public class QueDebugController  extends BaseController
     @PutMapping
     public AjaxResult edit(@Valid @RequestBody QueDebug queDebug)
     {
-        QueryWrapper<QueDebug> queryWrapper = new QueryWrapper<>();
-        return toAjax(queDebugService.update(queDebug,queryWrapper));
+        return toAjax(queDebugService.updateById(queDebug));
     }
-
     /**
      * 删除纠错管理
      */
@@ -137,5 +135,19 @@ public class QueDebugController  extends BaseController
     public AjaxResult remove(@PathVariable List<Long> debugIds)
     {
         return toAjax(queDebugService.removeByIds(debugIds));
+    }
+
+    /**
+     * 纠错管理进行纠错
+     */
+    @PreAuthorize(hasPermi = "question:debug:remove")
+    @Log(title = "纠错管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/{debugId}")
+    public AjaxResult debugById(@PathVariable("debugId") Long debugId)
+    {
+        QueDebug queDebug=new QueDebug();
+        queDebug.setDebugId(debugId);
+        queDebug.setDebugStatus("已纠错");
+        return toAjax(queDebugService.updateById(queDebug));
     }
 }

@@ -40,28 +40,6 @@ public class SysFileController
             // 上传并返回访问地址
             String url = sysFileService.uploadFile(file);
             SysFile sysFile = new SysFile();
-            sysFile.setName(FileUtils.getName(url));
-            sysFile.setUrl(url);
-            return R.ok(sysFile);
-        }
-        catch (Exception e)
-        {
-            log.error("上传文件失败", e);
-            return R.fail(e.getMessage());
-        }
-    }
-
-    /**
-     * 文件上传请求 指定文件上传类型+返回之前的文件名称
-     */
-    @PostMapping("/upload/{types}")
-    public R<SysFile> upload(@PathVariable List<String> types,MultipartFile file)
-    {
-        try
-        {
-            // 上传并返回访问地址
-            String url = sysFileService.uploadFile(file);
-            SysFile sysFile = new SysFile();
             sysFile.setName(file.getOriginalFilename());
             sysFile.setUrl(url);
             return R.ok(sysFile);

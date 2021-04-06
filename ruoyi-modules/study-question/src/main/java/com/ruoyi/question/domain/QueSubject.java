@@ -51,10 +51,7 @@ public class QueSubject {
   @JsonUnwrapped
   private SubjectDetail subjectDetail;
 
-  @ApiModelProperty(value = "岗位")
-  @NotNull(message = "请选择岗位")
-  @Excel(name = "岗位")
-  private String occupation;
+
 
   @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
   @JsonIgnore

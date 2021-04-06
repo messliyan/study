@@ -42,3 +42,11 @@ export function delDebug(debugId) {
     method: 'delete'
   })
 }
+
+  // 进行纠错
+export function debug(debugId) {
+  return request({
+    url: '/question/debug/' + debugId,
+    method: 'put'
+  })
+}

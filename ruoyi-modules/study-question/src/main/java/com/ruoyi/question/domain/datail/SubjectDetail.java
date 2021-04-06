@@ -2,6 +2,7 @@ package com.ruoyi.question.domain.datail;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -19,4 +20,7 @@ public class SubjectDetail {
   @ApiModelProperty(value = "权重")
   private String weight;
 
+  @ApiModelProperty(value = "岗位")
+  @NotNull(message = "请选择岗位")
+  private List<Long> postIds;
 }

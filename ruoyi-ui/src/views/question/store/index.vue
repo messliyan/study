@@ -15,9 +15,14 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="所属专题" prop="subjectId">
-        <el-select v-model="queryParams.subjectId" placeholder="请选择所属专题" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
+      <el-form-item label="所属专题" prop="subject">
+        <el-select v-model="queryParams.subject" placeholder="请选择所属专题" clearable size="small">
+          <el-option
+              v-for="subject in storeSubjectOptions"
+              :key="subject.subjectId"
+              :label="subject.subjectName"
+              :value="subject.subjectName"
+            ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -130,17 +135,39 @@
             ></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="所属专题" prop="subject">
+         <el-select v-model="form.subject" placeholder="请选择所属专题">
+          <el-option
+              v-for="subject in storeSubjectOptions"
+              :key="subject.subjectId"
+              :label="subject.subjectName"
+              :value="subject.subjectName"
+            ></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item label="题目内容" prop="storeContent">
           <el-input v-model="form.storeContent" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="题目详细" prop="storeDetail">
-          <el-input v-model="form.storeDetail" placeholder="请输入题目详细" />
+        <el-form-item label="题目答案" prop="answer">
+          <el-input v-model="form.answer"  type="textarea" placeholder="请输入题目答案" />
         </el-form-item>
-        <el-form-item label="所属专题" prop="subject">
-          <el-select v-model="form.subject" placeholder="请选择所属专题">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
+         <el-form-item label="题目解析" prop="parsing">
+          <el-input v-model="form.parsing"  type="textarea" placeholder="请输入题目解析" />
         </el-form-item>
+         <el-form-item label="题目选项" >
+        </el-form-item>
+        <el-form-item label="选项A" prop="selectionA">
+          <el-input v-model="form.selectionA" placeholder="请输入选项A" />
+        </el-form-item>
+        <el-form-item label="选项B" prop="selectionB">
+          <el-input v-model="form.selectionB" placeholder="请输入选项B" />
+        </el-form-item>
+        <el-form-item label="选项C" prop="selectionC">
+          <el-input v-model="form.selectionC" placeholder="请输入选项C" />
+        </el-form-item>  
+         <el-form-item label="选项D" prop="selectionD">
+          <el-input v-model="form.selectionD" placeholder="请输入选项D" />
+        </el-form-item>  
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -182,6 +209,7 @@
 
 <script>
 import { listStore, getStore, delStore, addStore, updateStore } from "@/api/question/store";
+import { listSubject } from "@/api/question/subject";
 import { getToken } from "@/utils/auth";
 export default {
   name: "Store",
@@ -209,8 +237,10 @@ export default {
       open: false,
       // 题目类型字典
       storeTypeOptions: [],
+      // 题目专题字典
+      storeSubjectOptions: [],
       // 用户导入参数
-    upload: {
+     upload: {
       // 是否显示弹出层（用户导入）
         open: false,
       // 弹出层标题（用户导入）
@@ -230,7 +260,12 @@ export default {
         pageSize: 10,
         storeType: null,
         storeContent: null,
-        subjectId: null,
+        subject: null,
+      },
+      // 字典查询参数
+      queryParams2: {
+        pageNum: 1,
+        pageSize: 10000
       },
       // 表单参数
       form: {},
@@ -241,6 +276,7 @@ export default {
   },
   created() {
     this.getList();
+    this.getSubject();
     this.getDicts("que_store_type").then(response => {
       this.storeTypeOptions = response.data;
     });
@@ -253,6 +289,12 @@ export default {
         this.storeList = response.rows;
         this.total = response.total;
         this.loading = false;
+      });
+    },
+    // 查询专题字典
+    getSubject() {
+      listSubject(this.queryParams2).then(response => {
+        this.storeSubjectOptions = response.rows;
       });
     },
     // 题目类型字典翻译
@@ -271,6 +313,12 @@ export default {
         storeType: null,
         storeContent: null,
         storeDetail: null,
+        answer: null,
+        parsing: null,
+        selectionA: null,
+        selectionB: null,
+        selectionC: null,
+        selectionD: null,
         subjectId: null,
         deleteStatus: 0,
         createTime: null,

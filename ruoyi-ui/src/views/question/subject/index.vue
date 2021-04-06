@@ -57,7 +57,12 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="专题编号" align="center" prop="subjectId" />
       <el-table-column label="专题名称" align="center" prop="subjectName" />
-      <el-table-column label="专题详细" align="center" prop="subjectDetail" />
+      <el-table-column label="专题描述" align="center" prop="describe" />
+      <el-table-column label="专题封面" align="center" prop="icon" >
+      <template slot-scope="scope">
+          　<img :src="scope.row.icon" />
+            </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -92,14 +97,26 @@
         <el-form-item label="专题名称" prop="subjectName">
           <el-input v-model="form.subjectName" placeholder="请输入专题名称" />
         </el-form-item>
-         <el-form-item label="专题详细">
-          <imageUpload v-model="form.subjectDetail"/>
+         <el-form-item label="专题描述">
+          <el-input v-model="form.describe" placeholder="请输入专题描述" />
         </el-form-item>
-        <el-form-item label="岗位" prop="occupation">
-          <el-select v-model="form.occupation" placeholder="请选择岗位">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
+        <el-form-item label="专题封面">
+          <imageUpload v-model="form.icon"/>
         </el-form-item>
+         <el-form-item label="权重">
+          <el-input v-model="form.weight" placeholder="请输入权重" />
+        </el-form-item>
+        <el-form-item label="岗位">
+              <el-select v-model="form.postIds" multiple placeholder="请选择">
+                <el-option
+                  v-for="item in postOptions"
+                  :key="item.postId"
+                  :label="item.postName"
+                  :value="item.postId"
+                  :disabled="item.status == 1"
+                ></el-option>
+              </el-select>
+            </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -111,6 +128,7 @@
 
 <script>
 import { listSubject, getSubject, delSubject, addSubject, updateSubject } from "@/api/question/subject";
+import { getUser } from "@/api/system/user";
 import ImageUpload from '@/components/ImageUpload';
 export default {
   name: "Subject",
@@ -137,6 +155,8 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
+        // 岗位选项
+      postOptions: [],
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -152,15 +172,22 @@ export default {
   },
   created() {
     this.getList();
+    this.getPost();
   },
   methods: {
-    /** 查询专题数据列表 */
+     /** 查询专题数据列表 */
     getList() {
       this.loading = true;
       listSubject(this.queryParams).then(response => {
         this.subjectList = response.rows;
         this.total = response.total;
         this.loading = false;
+      });
+    },
+    // 查询岗位
+    getPost() {
+       getUser().then(response => {
+        this.postOptions = response.posts;
       });
     },
     // 取消按钮
@@ -173,12 +200,15 @@ export default {
       this.form = {
         subjectId: null,
         subjectName: null,
+        weight: null,
+        describe: null,
         subjectDetail: null,
         occupation: null,
         deleteStatus: 0,
         createTime: null,
         updateTime: null,
-        version: null
+        version: null,
+        postIds: []
       };
       this.resetForm("form");
     },

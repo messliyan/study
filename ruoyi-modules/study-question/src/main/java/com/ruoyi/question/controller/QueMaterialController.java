@@ -126,8 +126,7 @@ public class QueMaterialController  extends BaseController
     @PutMapping
     public AjaxResult edit(@Valid @RequestBody QueMaterial queMaterial)
     {
-        QueryWrapper<QueMaterial> queryWrapper = new QueryWrapper<>();
-        return toAjax(queMaterialService.update(queMaterial,queryWrapper));
+        return toAjax(queMaterialService.updateById(queMaterial));
     }
 
     /**

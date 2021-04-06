@@ -66,7 +66,7 @@ public class QueStoreController  extends BaseController
         QueryWrapper<QueStore> wrapper2 = new QueryWrapper<>();
         wrapper2.lambda().like(StringUtils.isNotEmpty(queStore.getStoreContent()),QueStore::getStoreContent,queStore.getStoreContent())
             .eq(StringUtils.isNotEmpty(queStore.getStoreType()),QueStore::getStoreType,queStore.getStoreType())
-            .eq(ObjectUtils.isNotEmpty(queStore.getStoreId()),QueStore::getSubject,queStore.getStoreId());
+            .eq(StringUtils.isNotEmpty(queStore.getSubject()),QueStore::getSubject,queStore.getSubject());
 
         Page<QueStore> queStorePage=queStoreService.page(new Page<>(pageDomain.getPageNum(),
             pageDomain.getPageSize()), wrapper2);
@@ -152,8 +152,7 @@ public class QueStoreController  extends BaseController
     @PutMapping
     public AjaxResult edit(@Valid @RequestBody QueStore queStore)
     {
-        QueryWrapper<QueStore> queryWrapper = new QueryWrapper<>();
-        return toAjax(queStoreService.update(queStore,queryWrapper));
+        return toAjax(queStoreService.updateById(queStore));
     }
 
     /**

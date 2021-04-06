@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.ruoyi.common.core.annotation.Excel;
@@ -63,8 +64,8 @@ public class QueMaterial {
   private Integer deleteStatus;
 
   @ApiModelProperty(value = "创建时间")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   @TableField(fill = FieldFill.INSERT)
-  @JsonIgnore
   private LocalDateTime createTime;
 
   @ApiModelProperty(value = "更新时间")

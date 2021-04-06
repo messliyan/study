@@ -11,13 +11,23 @@
         />
       </el-form-item>
       <el-form-item label="资料类型" prop="materialType">
-        <el-select v-model="queryParams.subjectId" placeholder="请选择所属专题" clearable size="small">
-          <el-option label="请选择专题资料类型" value="" />
+        <el-select v-model="queryParams.materialType" placeholder="请选择资料类型" clearable size="small">
+          <el-option
+            v-for="dict in materialTypeOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictLabel"
+          />
         </el-select>
       </el-form-item>
       <el-form-item label="所属专题" prop="subjectId">
         <el-select v-model="queryParams.subjectId" placeholder="请选择所属专题" clearable size="small">
-          <el-option label="请选择字典生成" value="" />
+          <el-option
+              v-for="subject in materialSubjectOptions"
+              :key="subject.subjectId"
+              :label="subject.subjectName"
+              :value="subject.subjectId"
+            ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -70,7 +80,7 @@
       <el-table-column label="专题资料类型" align="center" prop="materialType" />
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -104,20 +114,34 @@
     <!-- 添加或修改专题资料对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="专题资料名称" prop="materialName">
-          <el-input v-model="form.materialName" placeholder="请输入专题资料名称" />
-        </el-form-item>
-        <el-form-item label="专题资料类型" prop="materialType">
-          <el-input v-model="form.materialType" placeholder="请输入专题资料类型" />
-        </el-form-item>
-        <el-form-item label="专题资料详细">
-          <fileUpload v-model="form.materialDetail"/>
-        </el-form-item>
-        <el-form-item label="所属专题" prop="subjectId">
+
+      <el-form-item label="所属专题" prop="subjectId">
           <el-select v-model="form.subjectId" placeholder="请选择所属专题">
-            <el-option label="请选择字典生成" value="" />
+            <el-option
+              v-for="subject in materialSubjectOptions"
+              :key="subject.subjectId"
+              :label="subject.subjectName"
+              :value="subject.subjectId"
+            ></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="资料名称" prop="materialName">
+          <el-input v-model="form.materialName" placeholder="请输入专题资料名称" />
+        </el-form-item>
+        <el-form-item label="资料类型" prop="materialType">
+          <el-select v-model="form.materialType" placeholder="请选择资料类型" >
+          <el-option
+            v-for="dict in materialTypeOptions"
+            :key="dict.dictValue"
+            :label="dict.dictLabel"
+            :value="dict.dictLabel"
+          />
+        </el-select>
+        </el-form-item>
+        <el-form-item label="文件资料">
+          <fileUpload v-model="form.url"/>
+        </el-form-item>
+    
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -129,6 +153,7 @@
 
 <script>
 import { listMaterial, getMaterial, delMaterial, addMaterial, updateMaterial } from "@/api/question/material";
+import { listSubject } from "@/api/question/subject";
 import FileUpload from '@/components/FileUpload';
 
 export default {
@@ -156,6 +181,11 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
+      // 专题资料类型字典
+      materialTypeOptions: [],
+      // 专题资料专题字典
+      materialSubjectOptions: [],
+
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -163,6 +193,11 @@ export default {
         materialName: null,
         materialType: null,
         subjectId: null,
+      },
+       // 字典查询参数
+      queryParams2: {
+        pageNum: 1,
+        pageSize: 10000
       },
       // 表单参数
       form: {},
@@ -173,6 +208,10 @@ export default {
   },
   created() {
     this.getList();
+    this.getSubject();
+    this.getDicts("que_material_type").then(response => {
+      this.materialTypeOptions = response.data;
+    });
   },
   methods: {
     /** 查询专题资料列表 */
@@ -183,6 +222,16 @@ export default {
         this.total = response.total;
         this.loading = false;
       });
+    },
+     // 查询专题字典
+    getSubject() {
+      listSubject(this.queryParams2).then(response => {
+        this.materialSubjectOptions = response.rows;
+      });
+    },
+    // 题目类型字典翻译
+    materialTypeFormat(row, column) {
+      return this.selectDictLabel(this.materialTypeOptions, row.materialType);
     },
     // 取消按钮
     cancel() {
@@ -195,7 +244,7 @@ export default {
         materialId: null,
         materialName: null,
         materialType: null,
-        materialDetail: null,
+        url: null,
         subjectId: null,
         deleteStatus: 0,
         createTime: null,

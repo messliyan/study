@@ -124,8 +124,7 @@ public class QueSubjectController  extends BaseController
     @PutMapping
     public AjaxResult edit(@Valid @RequestBody QueSubject queSubject)
     {
-        QueryWrapper<QueSubject> queryWrapper = new QueryWrapper<>();
-        return toAjax(queSubjectService.update(queSubject,queryWrapper));
+        return toAjax(queSubjectService.updateById(queSubject));
     }
 
     /**

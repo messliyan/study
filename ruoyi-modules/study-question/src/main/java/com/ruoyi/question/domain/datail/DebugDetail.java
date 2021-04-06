@@ -8,8 +8,11 @@ import lombok.Data;
 @Data
 public class DebugDetail {
 
-  @ApiModelProperty(value = "纠错题目")
-  private String store;
+  @ApiModelProperty(value = "纠错题目编号")
+  private Long storeId;
+
+  @ApiModelProperty(value = "纠错题目名称")
+  private String storeName;
 
   @ApiModelProperty(value = "纠错描述")
   private String detail;

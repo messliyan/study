@@ -1,5 +1,8 @@
 package com.ruoyi.system.controller;
 
+import com.ruoyi.system.api.domain.SysUser;
+import com.ruoyi.system.domain.vo.TreeSelect;
+import com.ruoyi.system.service.ISysUserService;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.Resource;
@@ -37,6 +40,8 @@ public class SysDeptController extends BaseController
     @Resource
     private ISysDeptService deptService;
 
+    @Resource
+    private ISysUserService userService;
     /**
      * 获取部门列表
      */
@@ -90,6 +95,45 @@ public class SysDeptController extends BaseController
     }
 
     /**
+     * 获取部门人员下拉树列表
+     */
+    @GetMapping("/treeselect/user")
+    public AjaxResult treeselectWithUser(SysDept dept)
+    {
+        List<SysDept> depts = deptService.selectDeptList(dept);
+        List<TreeSelect> treeSelects=deptService.buildDeptTreeSelect(depts);
+        List<SysUser> sysUsers=userService.selectUserList(new SysUser());
+        TreeSelect rootTreeSelect=new TreeSelect(){{
+            setChildren(treeSelects);
+            setId(0L);
+            setLabel("根节点");
+        }};
+        sysUsers.forEach(e->foreachTreeSelect(rootTreeSelect,e));
+
+        return AjaxResult.success(rootTreeSelect.getChildren());
+    }
+
+    /**
+     * 递归遍历树
+     */
+    private TreeSelect foreachTreeSelect(TreeSelect treeSelects, SysUser sysUser){
+
+        if (treeSelects.getId()==sysUser.getDeptId()){
+            treeSelects.getChildren().add(new TreeSelect(){{
+                setId(10000+sysUser.getUserId());
+                setLabel(sysUser.getUserName());
+            }});
+        }
+
+        if (treeSelects.getChildren()!=null){
+            treeSelects.getChildren().forEach(e->{
+                foreachTreeSelect(e,sysUser);
+            });
+        }
+        return null;
+    }
+
+    /**
      * 加载对应角色部门列表树
      */
     @GetMapping(value = "/roleDeptTreeselect/{roleId}")
@@ -101,6 +145,7 @@ public class SysDeptController extends BaseController
         ajax.put("depts", deptService.buildDeptTreeSelect(depts));
         return ajax;
     }
+
 
     /**
      * 新增部门

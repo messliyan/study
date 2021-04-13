@@ -14,7 +14,7 @@
         <module>ruoyi-job</module>
         <module>ruoyi-file</module>
         <module>study-question</module>
-        <module>study-subject</module>
+        <module>study-wxapp</module>
     </modules>
 
     <artifactId>ruoyi-modules</artifactId>

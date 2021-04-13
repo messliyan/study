@@ -116,7 +116,7 @@
                   :disabled="item.status == 1"
                 ></el-option>
               </el-select>
-            </el-form-item>
+         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>

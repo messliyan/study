@@ -1,12 +1,12 @@
 # Tomcat
 server:
-  port: 6100
+  port: 6200
 
 # Spring
 spring: 
   application:
     # 应用名称
-    name: study-subject
+    name: study-wxapp
   profiles:
     # 环境配置
     active: dev

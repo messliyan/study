@@ -1,4 +1,4 @@
-package com.ruoyi.subject;
+package com.ruoyi.wxapp;
 
 import com.ruoyi.common.security.annotation.EnableCustomConfig;
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
@@ -17,12 +17,11 @@ import org.springframework.cloud.client.SpringCloudApplication;
 @SpringCloudApplication
 @EnableRyFeignClients
 @SpringBootApplication
-public class SubjectApplication {
+public class WXappApplication {
 
-  public static void main(String[] args)
-  {
-    SpringApplication.run(SubjectApplication.class, args);
-    System.out.println("(♥◠‿◠)ﾉﾞ  专题管理模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
+  public static void main(String[] args) {
+    SpringApplication.run(WXappApplication.class, args);
+    System.out.println("(♥◠‿◠)ﾉﾞ  小程序业务模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
         " .-------.       ____     __        \n" +
         " |  _ _   \\      \\   \\   /  /    \n" +
         " | ( ' )  |       \\  _. /  '       \n" +

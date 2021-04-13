@@ -9,10 +9,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>study-modules-subject</artifactId>
+  <artifactId>study-modules-wxapp</artifactId>
 
   <description>
-    study-modules-subject专题管理
+    study-modules-wxapp小程序业务模块
   </description>
 
   <dependencies>

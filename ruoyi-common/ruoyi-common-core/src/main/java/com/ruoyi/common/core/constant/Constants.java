@@ -2,108 +2,108 @@ package com.ruoyi.common.core.constant;
 
 /**
  * 通用常量信息
- * 
+ *
  * @author ruoyi
  */
-public class Constants
-{
-    /**
-     * UTF-8 字符集
-     */
-    public static final String UTF8 = "UTF-8";
+public class Constants {
 
-    /**
-     * GBK 字符集
-     */
-    public static final String GBK = "GBK";
+  /**
+   * UTF-8 字符集
+   */
+  public static final String UTF8 = "UTF-8";
 
-    /**
-     * http请求
-     */
-    public static final String HTTP = "http://";
+  /**
+   * GBK 字符集
+   */
+  public static final String GBK = "GBK";
 
-    /**
-     * https请求
-     */
-    public static final String HTTPS = "https://";
+  /**
+   * http请求
+   */
+  public static final String HTTP = "http://";
 
-    /**
-     * 成功标记
-     */
-    public static final Integer SUCCESS = 200;
+  /**
+   * https请求
+   */
+  public static final String HTTPS = "https://";
 
-    /**
-     * 失败标记
-     */
-    public static final Integer FAIL = 500;
+  /**
+   * 成功标记
+   */
+  public static final Integer SUCCESS = 200;
 
-    /**
-     * 登录成功
-     */
-    public static final String LOGIN_SUCCESS = "Success";
+  /**
+   * 失败标记
+   */
+  public static final Integer FAIL = 500;
 
-    /**
-     * 注销
-     */
-    public static final String LOGOUT = "Logout";
+  /**
+   * 登录成功
+   */
+  public static final String LOGIN_SUCCESS = "Success";
 
-    /**
-     * 注册
-     */
-    public static final String REGISTER = "Register";
+  /**
+   * 注销
+   */
+  public static final String LOGOUT = "Logout";
 
-    /**
-     * 登录失败
-     */
-    public static final String LOGIN_FAIL = "Error";
+  /**
+   * 注册
+   */
+  public static final String REGISTER = "Register";
 
-    /**
-     * 当前记录起始索引
-     */
-    public static final String PAGE_NUM = "pageNum";
+  /**
+   * 登录失败
+   */
+  public static final String LOGIN_FAIL = "Error";
 
-    /**
-     * 每页显示记录数
-     */
-    public static final String PAGE_SIZE = "pageSize";
+  /**
+   * 当前记录起始索引
+   */
+  public static final String PAGE_NUM = "pageNum";
 
-    /**
-     * 排序列
-     */
-    public static final String ORDER_BY_COLUMN = "orderByColumn";
+  /**
+   * 每页显示记录数
+   */
+  public static final String PAGE_SIZE = "pageSize";
 
-    /**
-     * 排序的方向 "desc" 或者 "asc".
-     */
-    public static final String IS_ASC = "isAsc";
+  /**
+   * 排序列
+   */
+  public static final String ORDER_BY_COLUMN = "orderByColumn";
 
-    /**
-     * 验证码 redis key
-     */
-    public static final String CAPTCHA_CODE_KEY = "captcha_codes:";
+  /**
+   * 排序的方向 "desc" 或者 "asc".
+   */
+  public static final String IS_ASC = "isAsc";
 
-    /**
-     * 验证码有效期（分钟）
-     */
-    public static final long CAPTCHA_EXPIRATION = 2;
+  /**
+   * 验证码 redis key
+   */
+  public static final String CAPTCHA_CODE_KEY = "captcha_codes:";
 
-    /**
-     * 令牌有效期（分钟）
-     */
-    public final static long TOKEN_EXPIRE = 720;
+  /**
+   * 验证码有效期（分钟）
+   */
+  public static final long CAPTCHA_EXPIRATION = 2;
 
-    /**
-     * 参数管理 cache key
-     */
-    public static final String SYS_CONFIG_KEY = "sys_config:";
+  /**
+   * 令牌有效期（分钟）
+   */
+  public final static long TOKEN_EXPIRE = 720;
 
-    /**
-     * 字典管理 cache key
-     */
-    public static final String SYS_DICT_KEY = "sys_dict:";
+  /**
+   * 参数管理 cache key
+   */
+  public static final String SYS_CONFIG_KEY = "sys_config:";
 
-    /**
-     * 资源映射路径 前缀
-     */
-    public static final String RESOURCE_PREFIX = "/profile";
+  /**
+   * 字典管理 cache key
+   */
+  public static final String SYS_DICT_KEY = "sys_dict:";
+
+  /**
+   * 资源映射路径 前缀
+   */
+  public static final String RESOURCE_PREFIX = "/profile";
 }

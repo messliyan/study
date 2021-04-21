@@ -1,104 +1,104 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>com.ruoyi</groupId>
-        <artifactId>ruoyi</artifactId>
-        <version>2.5.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>ruoyi-gateway</artifactId>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+    </plugins>
+  </build>
 
-    <artifactId>ruoyi-gateway</artifactId>
+  <dependencies>
 
-    <description>
-        ruoyi-gateway网关模块
-    </description>
+    <!-- SpringCloud Gateway -->
+    <dependency>
+      <artifactId>spring-cloud-starter-gateway</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
 
-    <dependencies>
+    <!-- SpringCloud Ailibaba Nacos -->
+    <dependency>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+    </dependency>
 
-        <!-- SpringCloud Gateway -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
+    <!-- SpringCloud Ailibaba Nacos Config -->
+    <dependency>
+      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+    </dependency>
 
-        <!-- SpringCloud Ailibaba Nacos -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
+    <!-- SpringCloud Ailibaba Sentinel -->
+    <dependency>
+      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+    </dependency>
 
-        <!-- SpringCloud Ailibaba Nacos Config -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
+    <!-- SpringCloud Ailibaba Sentinel Gateway -->
+    <dependency>
+      <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+    </dependency>
 
-        <!-- SpringCloud Ailibaba Sentinel -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
+    <!-- Sentinel Datasource Nacos -->
+    <dependency>
+      <artifactId>sentinel-datasource-nacos</artifactId>
+      <groupId>com.alibaba.csp</groupId>
+    </dependency>
 
-        <!-- SpringCloud Ailibaba Sentinel Gateway -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
-        </dependency>
+    <!-- SpringBoot Actuator -->
+    <dependency>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
 
-        <!-- Sentinel Datasource Nacos -->
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
-        </dependency>
+    <!--验证码 -->
+    <dependency>
+      <artifactId>kaptcha</artifactId>
+      <groupId>com.github.penggle</groupId>
+    </dependency>
 
-        <!-- SpringBoot Actuator -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+    <!-- RuoYi Common Redis-->
+    <dependency>
+      <artifactId>ruoyi-common-redis</artifactId>
+      <groupId>com.ruoyi</groupId>
+    </dependency>
 
-        <!--验证码 -->
-        <dependency>
-            <groupId>com.github.penggle</groupId>
-            <artifactId>kaptcha</artifactId>
-        </dependency>
+    <!-- Swagger -->
+    <dependency>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <groupId>io.springfox</groupId>
+      <version>${swagger.fox.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>springfox-swagger2</artifactId>
+      <groupId>io.springfox</groupId>
+      <version>${swagger.fox.version}</version>
+    </dependency>
 
-        <!-- RuoYi Common Redis-->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-redis</artifactId>
-        </dependency>
+  </dependencies>
 
-        <!-- Swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.fox.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.fox.version}</version>
-        </dependency>
+  <description>
+    ruoyi-gateway网关模块
+  </description>
 
-    </dependencies>
+  <modelVersion>4.0.0</modelVersion>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+  <parent>
+    <artifactId>ruoyi</artifactId>
+    <groupId>com.ruoyi</groupId>
+    <version>2.5.0</version>
+  </parent>
 
 </project>

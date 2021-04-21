@@ -2,8 +2,6 @@ package com.ruoyi.common.core.utils.poi;
 
 import com.ruoyi.common.core.annotation.Excel;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author jiabin
@@ -17,19 +15,16 @@ public class ImportExcel {
   public Excel excel;
 
 
-
   public Field getField() {
     return field;
   }
 
-  public Excel getExcel() {
-    return excel;
-  }
-
-
-
   public void setField(Field field) {
     this.field = field;
+  }
+
+  public Excel getExcel() {
+    return excel;
   }
 
   public void setExcel(Excel excel) {

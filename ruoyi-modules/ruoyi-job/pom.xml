@@ -1,100 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>com.ruoyi</groupId>
-        <artifactId>ruoyi-modules</artifactId>
-        <version>2.5.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>ruoyi-modules-job</artifactId>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+    </plugins>
+  </build>
 
-    <artifactId>ruoyi-modules-job</artifactId>
+  <dependencies>
 
-    <description>
-        ruoyi-modules-job定时任务
-    </description>
+    <!-- SpringCloud Ailibaba Nacos -->
+    <dependency>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+    </dependency>
 
-    <dependencies>
-    	
-    	<!-- SpringCloud Ailibaba Nacos -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        
-        <!-- SpringCloud Ailibaba Nacos Config -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        
-        <!-- SpringCloud Ailibaba Sentinel -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-        
-        <!-- SpringBoot Actuator -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-		
-        <!-- Swagger UI -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.fox.version}</version>
-        </dependency>
-		
-        <!-- Quartz -->
-        <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mchange</groupId>
-                    <artifactId>c3p0</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-        <!-- Mysql Connector -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        
-        <!-- RuoYi Common Log -->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-log</artifactId>
-        </dependency>
-        
-        <!-- RuoYi Common Swagger -->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-swagger</artifactId>
-        </dependency>
-        
-    </dependencies>
+    <!-- SpringCloud Ailibaba Nacos Config -->
+    <dependency>
+      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+    </dependency>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-   
+    <!-- SpringCloud Ailibaba Sentinel -->
+    <dependency>
+      <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+    </dependency>
+
+    <!-- SpringBoot Actuator -->
+    <dependency>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <!-- Swagger UI -->
+    <dependency>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <groupId>io.springfox</groupId>
+      <version>${swagger.fox.version}</version>
+    </dependency>
+
+    <!-- Quartz -->
+    <dependency>
+      <artifactId>quartz</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>c3p0</artifactId>
+          <groupId>com.mchange</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.quartz-scheduler</groupId>
+    </dependency>
+
+    <!-- Mysql Connector -->
+    <dependency>
+      <artifactId>mysql-connector-java</artifactId>
+      <groupId>mysql</groupId>
+    </dependency>
+
+    <!-- RuoYi Common Log -->
+    <dependency>
+      <artifactId>ruoyi-common-log</artifactId>
+      <groupId>com.ruoyi</groupId>
+    </dependency>
+
+    <!-- RuoYi Common Swagger -->
+    <dependency>
+      <artifactId>ruoyi-common-swagger</artifactId>
+      <groupId>com.ruoyi</groupId>
+    </dependency>
+
+  </dependencies>
+
+  <description>
+    ruoyi-modules-job定时任务
+  </description>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>ruoyi-modules</artifactId>
+    <groupId>com.ruoyi</groupId>
+    <version>2.5.0</version>
+  </parent>
+
 </project>

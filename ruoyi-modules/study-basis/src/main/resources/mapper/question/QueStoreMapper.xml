@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.question.mapper.QueStoreMapper">
+
+  <delete id="deleteQueStoreById" parameterType="Long">
+        delete from que_store where store_id = #{storeId}
+    </delete>
+
+  <delete id="deleteQueStoreByIds" parameterType="String">
+    delete from que_store where store_id in
+    <foreach close=")" collection="array" item="storeId" open="(" separator=",">
+      #{storeId}
+    </foreach>
+  </delete>
+
+  <insert id="insertQueStore" keyProperty="storeId" parameterType="QueStore"
+    useGeneratedKeys="true">
+    insert into que_store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeType != null">store_type,</if>
+      <if test="storeContent != null">store_content,</if>
+      <if test="storeDetail != null">store_detail,</if>
+      <if test="createBy != null">create_by,</if>
+      <if test="createTime != null">create_time,</if>
+      <if test="updateBy != null">update_by,</if>
+      <if test="updateTime != null">update_time,</if>
+      <if test="remark != null">remark,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeType != null">#{storeType},</if>
+      <if test="storeContent != null">#{storeContent},</if>
+      <if test="storeDetail != null">#{storeDetail},</if>
+      <if test="createBy != null">#{createBy},</if>
+      <if test="createTime != null">#{createTime},</if>
+      <if test="updateBy != null">#{updateBy},</if>
+      <if test="updateTime != null">#{updateTime},</if>
+      <if test="remark != null">#{remark},</if>
+    </trim>
+  </insert>
+
+  <resultMap id="QueStoreResult" type="QueStore">
+    <result column="store_id" property="storeId"/>
+    <result column="store_type" property="storeType"/>
+    <result column="store_content" property="storeContent"/>
+    <result column="store_detail" property="storeDetail"/>
+    <result column="create_by" property="createBy"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_by" property="updateBy"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="remark" property="remark"/>
+  </resultMap>
+
+  <select id="selectQueStoreById" parameterType="Long" resultMap="QueStoreResult">
+    <include refid="selectQueStoreVo"/>
+    where store_id = #{storeId}
+  </select>
+
+  <select id="selectQueStoreList" parameterType="QueStore" resultMap="QueStoreResult">
+    <include refid="selectQueStoreVo"/>
+    <where>
+      <if test="storeType != null  and storeType != ''">and store_type = #{storeType}</if>
+      <if test="storeContent != null  and storeContent != ''">and store_content like concat('%',
+        #{storeContent}, '%')
+      </if>
+      <if test="storeDetail != null  and storeDetail != ''">and store_detail = #{storeDetail}</if>
+    </where>
+  </select>
+
+  <sql id="selectQueStoreVo">
+        select store_id, store_type, store_content, store_detail, create_by, create_time, update_by, update_time, remark from que_store
+    </sql>
+
+  <update id="updateQueStore" parameterType="QueStore">
+    update que_store
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="storeType != null">store_type = #{storeType},</if>
+      <if test="storeContent != null">store_content = #{storeContent},</if>
+      <if test="storeDetail != null">store_detail = #{storeDetail},</if>
+      <if test="createBy != null">create_by = #{createBy},</if>
+      <if test="createTime != null">create_time = #{createTime},</if>
+      <if test="updateBy != null">update_by = #{updateBy},</if>
+      <if test="updateTime != null">update_time = #{updateTime},</if>
+      <if test="remark != null">remark = #{remark},</if>
+    </trim>
+    where store_id = #{storeId}
+  </update>
+</mapper>

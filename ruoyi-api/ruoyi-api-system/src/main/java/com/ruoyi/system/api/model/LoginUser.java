@@ -1,150 +1,132 @@
 package com.ruoyi.system.api.model;
 
+import com.ruoyi.system.api.domain.SysUser;
 import java.io.Serializable;
 import java.util.Set;
-import com.ruoyi.system.api.domain.SysUser;
 
 /**
  * 用户信息
  *
  * @author ruoyi
  */
-public class LoginUser implements Serializable
-{
-    private static final long serialVersionUID = 1L;
+public class LoginUser implements Serializable {
 
-    /**
-     * 用户唯一标识
-     */
-    private String token;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * 用户名id
-     */
-    private Long userid;
+  /**
+   * 用户唯一标识
+   */
+  private String token;
 
-    /**
-     * 用户名
-     */
-    private String username;
+  /**
+   * 用户名id
+   */
+  private Long userid;
 
-    /**
-     * 登录时间
-     */
-    private Long loginTime;
+  /**
+   * 用户名
+   */
+  private String username;
 
-    /**
-     * 过期时间
-     */
-    private Long expireTime;
+  /**
+   * 登录时间
+   */
+  private Long loginTime;
 
-    /**
-     * 登录IP地址
-     */
-    private String ipaddr;
+  /**
+   * 过期时间
+   */
+  private Long expireTime;
 
-    /**
-     * 权限列表
-     */
-    private Set<String> permissions;
+  /**
+   * 登录IP地址
+   */
+  private String ipaddr;
 
-    /**
-     * 角色列表
-     */
-    private Set<String> roles;
+  /**
+   * 权限列表
+   */
+  private Set<String> permissions;
 
-    /**
-     * 用户信息
-     */
-    private SysUser sysUser;
+  /**
+   * 角色列表
+   */
+  private Set<String> roles;
 
-    public String getToken()
-    {
-        return token;
-    }
+  /**
+   * 用户信息
+   */
+  private SysUser sysUser;
 
-    public void setToken(String token)
-    {
-        this.token = token;
-    }
+  public String getToken() {
+    return token;
+  }
 
-    public Long getUserid()
-    {
-        return userid;
-    }
+  public void setToken(String token) {
+    this.token = token;
+  }
 
-    public void setUserid(Long userid)
-    {
-        this.userid = userid;
-    }
+  public Long getUserid() {
+    return userid;
+  }
 
-    public String getUsername()
-    {
-        return username;
-    }
+  public void setUserid(Long userid) {
+    this.userid = userid;
+  }
 
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public Long getLoginTime()
-    {
-        return loginTime;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public void setLoginTime(Long loginTime)
-    {
-        this.loginTime = loginTime;
-    }
+  public Long getLoginTime() {
+    return loginTime;
+  }
 
-    public Long getExpireTime()
-    {
-        return expireTime;
-    }
+  public void setLoginTime(Long loginTime) {
+    this.loginTime = loginTime;
+  }
 
-    public void setExpireTime(Long expireTime)
-    {
-        this.expireTime = expireTime;
-    }
+  public Long getExpireTime() {
+    return expireTime;
+  }
 
-    public String getIpaddr()
-    {
-        return ipaddr;
-    }
+  public void setExpireTime(Long expireTime) {
+    this.expireTime = expireTime;
+  }
 
-    public void setIpaddr(String ipaddr)
-    {
-        this.ipaddr = ipaddr;
-    }
+  public String getIpaddr() {
+    return ipaddr;
+  }
 
-    public Set<String> getPermissions()
-    {
-        return permissions;
-    }
+  public void setIpaddr(String ipaddr) {
+    this.ipaddr = ipaddr;
+  }
 
-    public void setPermissions(Set<String> permissions)
-    {
-        this.permissions = permissions;
-    }
+  public Set<String> getPermissions() {
+    return permissions;
+  }
 
-    public Set<String> getRoles()
-    {
-        return roles;
-    }
+  public void setPermissions(Set<String> permissions) {
+    this.permissions = permissions;
+  }
 
-    public void setRoles(Set<String> roles)
-    {
-        this.roles = roles;
-    }
+  public Set<String> getRoles() {
+    return roles;
+  }
 
-    public SysUser getSysUser()
-    {
-        return sysUser;
-    }
+  public void setRoles(Set<String> roles) {
+    this.roles = roles;
+  }
 
-    public void setSysUser(SysUser sysUser)
-    {
-        this.sysUser = sysUser;
-    }
+  public SysUser getSysUser() {
+    return sysUser;
+  }
+
+  public void setSysUser(SysUser sysUser) {
+    this.sysUser = sysUser;
+  }
 }

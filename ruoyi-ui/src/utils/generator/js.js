@@ -1,6 +1,6 @@
-import { isArray } from 'util'
-import { exportDefault, titleCase } from '@/utils/index'
-import { trigger } from './config'
+import {isArray} from 'util'
+import {exportDefault, titleCase} from '@/utils/index'
+import {trigger} from './config'
 
 const units = {
   KB: '1024',
@@ -13,7 +13,6 @@ const inheritAttrs = {
   dialog: 'inheritAttrs: false,'
 }
 
-
 export function makeUpJs(conf, type) {
   confGlobal = conf = JSON.parse(JSON.stringify(conf))
   const dataList = []
@@ -24,7 +23,8 @@ export function makeUpJs(conf, type) {
   const uploadVarList = []
 
   conf.fields.forEach(el => {
-    buildAttributes(el, dataList, ruleList, optionsList, methodList, propsList, uploadVarList)
+    buildAttributes(el, dataList, ruleList, optionsList, methodList, propsList,
+      uploadVarList)
   })
 
   const script = buildexport(
@@ -41,7 +41,8 @@ export function makeUpJs(conf, type) {
   return script
 }
 
-function buildAttributes(el, dataList, ruleList, optionsList, methodList, propsList, uploadVarList) {
+function buildAttributes(el, dataList, ruleList, optionsList, methodList,
+  propsList, uploadVarList) {
   buildData(el, dataList)
   buildRules(el, ruleList)
 
@@ -71,13 +72,15 @@ function buildAttributes(el, dataList, ruleList, optionsList, methodList, propsL
 
   if (el.children) {
     el.children.forEach(el2 => {
-      buildAttributes(el2, dataList, ruleList, optionsList, methodList, propsList, uploadVarList)
+      buildAttributes(el2, dataList, ruleList, optionsList, methodList,
+        propsList, uploadVarList)
     })
   }
 }
 
 function mixinMethod(type) {
-  const list = []; const
+  const list = [];
+  const
     minxins = {
       file: confGlobal.formBtns ? {
         submitForm: `submitForm() {
@@ -118,7 +121,9 @@ function mixinMethod(type) {
 }
 
 function buildData(conf, dataList) {
-  if (conf.vModel === undefined) return
+  if (conf.vModel === undefined) {
+    return
+  }
   let defaultValue
   if (typeof (conf.defaultValue) === 'string' && !conf.multiple) {
     defaultValue = `'${conf.defaultValue}'`
@@ -129,19 +134,26 @@ function buildData(conf, dataList) {
 }
 
 function buildRules(conf, ruleList) {
-  if (conf.vModel === undefined) return
+  if (conf.vModel === undefined) {
+    return
+  }
   const rules = []
   if (trigger[conf.tag]) {
     if (conf.required) {
       const type = isArray(conf.defaultValue) ? 'type: \'array\',' : ''
-      let message = isArray(conf.defaultValue) ? `请至少选择一个${conf.vModel}` : conf.placeholder
-      if (message === undefined) message = `${conf.label}不能为空`
-      rules.push(`{ required: true, ${type} message: '${message}', trigger: '${trigger[conf.tag]}' }`)
+      let message = isArray(conf.defaultValue) ? `请至少选择一个${conf.vModel}`
+        : conf.placeholder
+      if (message === undefined) {
+        message = `${conf.label}不能为空`
+      }
+      rules.push(
+        `{ required: true, ${type} message: '${message}', trigger: '${trigger[conf.tag]}' }`)
     }
     if (conf.regList && isArray(conf.regList)) {
       conf.regList.forEach(item => {
         if (item.pattern) {
-          rules.push(`{ pattern: ${eval(item.pattern)}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
+          rules.push(`{ pattern: ${eval(
+            item.pattern)}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
         }
       })
     }
@@ -150,8 +162,12 @@ function buildRules(conf, ruleList) {
 }
 
 function buildOptions(conf, optionsList) {
-  if (conf.vModel === undefined) return
-  if (conf.dataType === 'dynamic') { conf.options = [] }
+  if (conf.vModel === undefined) {
+    return
+  }
+  if (conf.dataType === 'dynamic') {
+    conf.options = []
+  }
   const str = `${conf.vModel}Options: ${JSON.stringify(conf.options)},`
   optionsList.push(str)
 }
@@ -160,14 +176,18 @@ function buildProps(conf, propsList) {
   if (conf.dataType === 'dynamic') {
     conf.valueKey !== 'value' && (conf.props.props.value = conf.valueKey)
     conf.labelKey !== 'label' && (conf.props.props.label = conf.labelKey)
-    conf.childrenKey !== 'children' && (conf.props.props.children = conf.childrenKey)
+    conf.childrenKey !== 'children'
+    && (conf.props.props.children = conf.childrenKey)
   }
   const str = `${conf.vModel}Props: ${JSON.stringify(conf.props.props)},`
   propsList.push(str)
 }
 
 function buildBeforeUpload(conf) {
-  const unitNum = units[conf.sizeUnit]; let rightSizeCode = ''; let acceptCode = ''; const
+  const unitNum = units[conf.sizeUnit];
+  let rightSizeCode = '';
+  let acceptCode = '';
+  const
     returnList = []
   if (conf.fileSize) {
     rightSizeCode = `let isRightSize = file.size / ${unitNum} < ${conf.fileSize}
@@ -206,7 +226,8 @@ function buildOptionMethod(methodName, model, methodList) {
   methodList.push(str)
 }
 
-function buildexport(conf, type, data, rules, selectOptions, uploadVar, props, methods) {
+function buildexport(conf, type, data, rules, selectOptions, uploadVar, props,
+  methods) {
   const str = `${exportDefault}{
   ${inheritAttrs[type]}
   components: {},

@@ -43,7 +43,7 @@ export function delDebug(debugId) {
   })
 }
 
-  // 进行纠错
+// 进行纠错
 export function debug(debugId) {
   return request({
     url: '/question/debug/' + debugId,

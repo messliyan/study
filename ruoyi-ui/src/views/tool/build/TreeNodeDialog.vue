@@ -1,20 +1,20 @@
 <template>
   <div>
     <el-dialog
-      v-bind="$attrs"
       :close-on-click-modal="false"
       :modal-append-to-body="false"
-      v-on="$listeners"
-      @open="onOpen"
       @close="onClose"
+      @open="onOpen"
+      v-bind="$attrs"
+      v-on="$listeners"
     >
       <el-row :gutter="0">
         <el-form
-          ref="elForm"
           :model="formData"
           :rules="rules"
-          size="small"
           label-width="100px"
+          ref="elForm"
+          size="small"
         >
           <el-col :span="24">
             <el-form-item
@@ -22,9 +22,9 @@
               prop="label"
             >
               <el-input
-                v-model="formData.label"
-                placeholder="请输入选项名"
                 clearable
+                placeholder="请输入选项名"
+                v-model="formData.label"
               />
             </el-form-item>
           </el-col>
@@ -34,21 +34,21 @@
               prop="value"
             >
               <el-input
-                v-model="formData.value"
-                placeholder="请输入选项值"
                 clearable
+                placeholder="请输入选项值"
+                v-model="formData.value"
               >
                 <el-select
+                  :style="{width: '100px'}"
                   slot="append"
                   v-model="dataType"
-                  :style="{width: '100px'}"
                 >
                   <el-option
-                    v-for="(item, index) in dataTypeOptions"
+                    :disabled="item.disabled"
                     :key="index"
                     :label="item.label"
                     :value="item.value"
-                    :disabled="item.disabled"
+                    v-for="(item, index) in dataTypeOptions"
                   />
                 </el-select>
               </el-input>
@@ -58,8 +58,8 @@
       </el-row>
       <div slot="footer">
         <el-button
-          type="primary"
           @click="handelConfirm"
+          type="primary"
         >
           确定
         </el-button>
@@ -71,79 +71,84 @@
   </div>
 </template>
 <script>
-import { isNumberStr } from '@/utils/index'
+  import {isNumberStr} from '@/utils/index'
 
-export default {
-  components: {},
-  inheritAttrs: false,
-  props: [],
-  data() {
-    return {
-      id: 100,
-      formData: {
-        label: undefined,
-        value: undefined
-      },
-      rules: {
-        label: [
+  export default {
+    components: {},
+    inheritAttrs: false,
+    props: [],
+    data() {
+      return {
+        id: 100,
+        formData: {
+          label: undefined,
+          value: undefined
+        },
+        rules: {
+          label: [
+            {
+              required: true,
+              message: '请输入选项名',
+              trigger: 'blur'
+            }
+          ],
+          value: [
+            {
+              required: true,
+              message: '请输入选项值',
+              trigger: 'blur'
+            }
+          ]
+        },
+        dataType: 'string',
+        dataTypeOptions: [
           {
-            required: true,
-            message: '请输入选项名',
-            trigger: 'blur'
-          }
-        ],
-        value: [
+            label: '字符串',
+            value: 'string'
+          },
           {
-            required: true,
-            message: '请输入选项值',
-            trigger: 'blur'
+            label: '数字',
+            value: 'number'
           }
         ]
-      },
-      dataType: 'string',
-      dataTypeOptions: [
-        {
-          label: '字符串',
-          value: 'string'
-        },
-        {
-          label: '数字',
-          value: 'number'
-        }
-      ]
-    }
-  },
-  computed: {},
-  watch: {
-    // eslint-disable-next-line func-names
-    'formData.value': function (val) {
-      this.dataType = isNumberStr(val) ? 'number' : 'string'
-    }
-  },
-  created() {},
-  mounted() {},
-  methods: {
-    onOpen() {
-      this.formData = {
-        label: undefined,
-        value: undefined
       }
     },
-    onClose() {},
-    close() {
-      this.$emit('update:visible', false)
+    computed: {},
+    watch: {
+      // eslint-disable-next-line func-names
+      'formData.value': function (val) {
+        this.dataType = isNumberStr(val) ? 'number' : 'string'
+      }
     },
-    handelConfirm() {
-      this.$refs.elForm.validate(valid => {
-        if (!valid) return
-        if (this.dataType === 'number') {
-          this.formData.value = parseFloat(this.formData.value)
+    created() {
+    },
+    mounted() {
+    },
+    methods: {
+      onOpen() {
+        this.formData = {
+          label: undefined,
+          value: undefined
         }
-        this.formData.id = this.id++
-        this.$emit('commit', this.formData)
-        this.close()
-      })
+      },
+      onClose() {
+      },
+      close() {
+        this.$emit('update:visible', false)
+      },
+      handelConfirm() {
+        this.$refs.elForm.validate(valid => {
+          if (!valid) {
+            return
+          }
+          if (this.dataType === 'number') {
+            this.formData.value = parseFloat(this.formData.value)
+          }
+          this.formData.id = this.id++
+          this.$emit('commit', this.formData)
+          this.close()
+        })
+      }
     }
   }
-}
 </script>

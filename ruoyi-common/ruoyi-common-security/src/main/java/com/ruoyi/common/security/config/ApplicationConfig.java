@@ -9,14 +9,13 @@ import org.springframework.context.annotation.Bean;
  *
  * @author ruoyi
  */
-public class ApplicationConfig
-{
-    /**
-     * 时区配置
-     */
-    @Bean
-    public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization()
-    {
-        return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.timeZone(TimeZone.getDefault());
-    }
+public class ApplicationConfig {
+
+  /**
+   * 时区配置
+   */
+  @Bean
+  public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization() {
+    return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.timeZone(TimeZone.getDefault());
+  }
 }

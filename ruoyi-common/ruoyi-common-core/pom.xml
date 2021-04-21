@@ -1,105 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>com.ruoyi</groupId>
-        <artifactId>ruoyi-common</artifactId>
-        <version>2.5.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>ruoyi-common-core</artifactId>
+  <dependencies>
 
-    <artifactId>ruoyi-common-core</artifactId>
-    
-    <description>
-        ruoyi-common-core核心模块
-    </description>
+    <!-- SpringCloud Openfeign -->
+    <dependency>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+    </dependency>
 
-    <dependencies>
+    <!-- Spring Context Support -->
+    <dependency>
+      <artifactId>spring-context-support</artifactId>
+      <groupId>org.springframework</groupId>
+    </dependency>
 
-    	<!-- SpringCloud Openfeign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-    	</dependency>
+    <!-- Spring Web -->
+    <dependency>
+      <artifactId>spring-web</artifactId>
+      <groupId>org.springframework</groupId>
+    </dependency>
 
-    	<!-- Spring Context Support -->
-    	<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-    	</dependency>
+    <!-- Apache Commons Pool2 -->
+    <dependency>
+      <artifactId>commons-pool2</artifactId>
+      <groupId>org.apache.commons</groupId>
+    </dependency>
 
-    	<!-- Spring Web -->
-    	<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-    	</dependency>
+    <!-- Pagehelper -->
+    <dependency>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <groupId>com.github.pagehelper</groupId>
+    </dependency>
 
-        <!-- Apache Commons Pool2 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-        </dependency>
+    <!-- Hibernate Validator -->
+    <dependency>
+      <artifactId>spring-boot-starter-validation</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
 
-        <!-- Pagehelper -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-        </dependency>
+    <!-- Jackson -->
+    <dependency>
+      <artifactId>jackson-databind</artifactId>
+      <groupId>com.fasterxml.jackson.core</groupId>
+    </dependency>
 
-        <!-- Hibernate Validator -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
+    <!-- Alibaba Fastjson -->
+    <dependency>
+      <artifactId>fastjson</artifactId>
+      <groupId>com.alibaba</groupId>
+    </dependency>
 
-        <!-- Jackson -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
+    <!-- Apache Lang3 -->
+    <dependency>
+      <artifactId>commons-lang3</artifactId>
+      <groupId>org.apache.commons</groupId>
+    </dependency>
 
-        <!-- Alibaba Fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
+    <!-- Commons Io -->
+    <dependency>
+      <artifactId>commons-io</artifactId>
+      <groupId>commons-io</groupId>
+    </dependency>
 
-        <!-- Apache Lang3 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
+    <!-- Commons Fileupload -->
+    <dependency>
+      <artifactId>commons-fileupload</artifactId>
+      <groupId>commons-fileupload</groupId>
+    </dependency>
 
-        <!-- Commons Io -->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
+    <!-- excel工具 -->
+    <dependency>
+      <artifactId>poi-ooxml</artifactId>
+      <groupId>org.apache.poi</groupId>
+    </dependency>
 
-        <!-- Commons Fileupload -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-        </dependency>
+    <!-- Java Servlet -->
+    <dependency>
+      <artifactId>javax.servlet-api</artifactId>
+      <groupId>javax.servlet</groupId>
+    </dependency>
 
-        <!-- excel工具 -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-        </dependency>
+    <!-- Swagger -->
+    <dependency>
+      <artifactId>swagger-annotations</artifactId>
+      <groupId>io.swagger</groupId>
+    </dependency>
+  </dependencies>
 
-        <!-- Java Servlet -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
+  <description>
+    ruoyi-common-core核心模块
+  </description>
 
-        <!-- Swagger -->
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-        </dependency>
-    </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>ruoyi-common</artifactId>
+    <groupId>com.ruoyi</groupId>
+    <version>2.5.0</version>
+  </parent>
 
 </project>

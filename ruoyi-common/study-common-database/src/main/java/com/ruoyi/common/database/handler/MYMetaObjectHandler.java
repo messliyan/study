@@ -3,7 +3,6 @@ package com.ruoyi.common.database.handler;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.ruoyi.common.database.config.DatabaseProperties;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +37,8 @@ public class MYMetaObjectHandler implements MetaObjectHandler {
       if (metaObject.hasSetter(createTimeField) && Objects
           .isNull(this.getFieldValByName(createTimeField, metaObject))) {
 
-        this.strictInsertFill(metaObject, createTimeField, LocalDateTime.class, LocalDateTime.now()); // 起始版本 3.3.0(推荐使用)
+        this.strictInsertFill(metaObject, createTimeField, LocalDateTime.class,
+            LocalDateTime.now()); // 起始版本 3.3.0(推荐使用)
 
       }
     }
@@ -48,7 +48,8 @@ public class MYMetaObjectHandler implements MetaObjectHandler {
       String updateTimeField = databaseProperties.getConfig().getUpdateTimeField();
       if (metaObject.hasSetter(updateTimeField) && Objects
           .isNull(this.getFieldValByName(updateTimeField, metaObject))) {
-        this.strictInsertFill(metaObject, updateTimeField, LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, updateTimeField, LocalDateTime.class,
+            LocalDateTime.now());
 
       }
     }
@@ -66,7 +67,8 @@ public class MYMetaObjectHandler implements MetaObjectHandler {
       String updateTimeField = databaseProperties.getConfig().getUpdateTimeField();
       if (metaObject.hasSetter(updateTimeField) && Objects
           .isNull(this.getFieldValByName(updateTimeField, metaObject))) {
-        this.strictUpdateFill(metaObject, updateTimeField, LocalDateTime.class, LocalDateTime.now());
+        this.strictUpdateFill(metaObject, updateTimeField, LocalDateTime.class,
+            LocalDateTime.now());
 
       }
     }

@@ -48,20 +48,25 @@ public class ApplicationDatabaseInitializer implements
     setSystemProperty(environment, "spring.datasource.dynamic.druid.max-active", "20");
     setSystemProperty(environment, "spring.datasource.dynamic.druid.min-idle", "5");
     setSystemProperty(environment, "spring.datasource.dynamic.druid.max-wait", "60000");
-    setSystemProperty(environment, "spring.datasource.dynamic.druid.pool-prepared-statements", "true");
+    setSystemProperty(environment, "spring.datasource.dynamic.druid.pool-prepared-statements",
+        "true");
     setSystemProperty(environment,
         "spring.datasource.dynamic.druid.max-pool-prepared-statement-per-connection-size", "20");
-    setSystemProperty(environment, "spring.datasource.dynamic.druid.validation-query", "select 'x'");
+    setSystemProperty(environment, "spring.datasource.dynamic.druid.validation-query",
+        "select 'x'");
     setSystemProperty(environment, "spring.datasource.dynamic.druid.test-on-borrow", "false");
     setSystemProperty(environment, "spring.datasource.dynamic.druid.test-on-return", "false");
     setSystemProperty(environment, "spring.datasource.dynamic.druid.test-while-idle", "true");
-    setSystemProperty(environment, "spring.datasource.dynamic.druid.time-between-eviction-runs-millis",
+    setSystemProperty(environment,
+        "spring.datasource.dynamic.druid.time-between-eviction-runs-millis",
         "60000");
     setSystemProperty(environment, "spring.datasource.dynamic.druid.min-evictable-idle-time-millis",
         "300000");
     setSystemProperty(environment,
-        "spring.datasource.dynamic.druid.filters.commons-log.connection-logger-name", "stat,wall,log4j");
-    setSystemProperty(environment, "spring.datasource.dynamic.druid.use-global-data-source-stat", "true");
+        "spring.datasource.dynamic.druid.filters.commons-log.connection-logger-name",
+        "stat,wall,log4j");
+    setSystemProperty(environment, "spring.datasource.dynamic.druid.use-global-data-source-stat",
+        "true");
     setSystemProperty(environment, "spring.datasource.dynamic.druid.connection-properties",
         "druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000");
 

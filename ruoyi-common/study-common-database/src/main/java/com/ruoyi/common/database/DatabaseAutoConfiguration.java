@@ -1,7 +1,6 @@
 package com.ruoyi.common.database;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.ruoyi.common.database.config.DatabaseProperties;
